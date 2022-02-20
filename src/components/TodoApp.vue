@@ -18,11 +18,20 @@ export default {
     const todos = ref([])
     provide('todos', todos)
 
+    // LOCAL STORAGE
+      // Si existe un localStorage, se va a cargar los datos (El local storage es un espacio en memoria que está ligada al navegador, osea que no funciona con varios navegadores con el mismo localStorage)
+    if(localStorage.getItem('todos')) {
+      todos.value = JSON.parse(localStorage.getItem('todos'))
+    }
+
     // Realizar seguimiento a todos .length y .value (Es para debug en este caso)
       // Detecta los cambios de lo que contenga dentro para ejecutar el código en 'watchEffect()'
     watchEffect(() => {
-      console.log(todos.value.length)
-      console.log(todos.value)
+      // debug - console.log(todos.value.length)
+      // debug - console.log(todos.value)
+
+      //Guardar en el local storage cada vez que un toDo sea modificado
+      localStorage.setItem('todos', JSON.stringify(todos.value))
     })
   }
 };

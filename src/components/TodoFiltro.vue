@@ -40,6 +40,7 @@ export default {
     const estado = inject('estado')
     //console.log(estado.value)
 
+    // Filtrar con el valor de
     const filtrar = valor => {
       estado.value = valor
     }
